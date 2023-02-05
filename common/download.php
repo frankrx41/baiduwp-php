@@ -208,10 +208,19 @@ else {
                         echo '<p class="card-text">' . Language["NotSupportWithUA"] . '</p>';
                     }
                 } else {
-                    echo '<p class="card-text">' . Language["NotSupportWithoutUA"] . '</p>';
+                    $type = substr($filename, -4);
+                    if ($type == ".jpg" || $type == ".png" || $type == "jpeg" || $type == ".bmp" || $type == ".gif") {
+                        echo '<img src="https://' . $realLink . '" class="img-fluid rounded" style="width: 100%;">';
+                    } elseif ($type == ".mp4") {
+                        echo '<video src="https://' . $realLink . '" controls="controls" style="width: 100%;">您的浏览器不支持播放此视频！</video>';
+                    } elseif ($type == ".mp3" || $type == ".wav") {
+                        echo '<audio src="https://' . $realLink . '" controls="controls" style="width: 100%;">您的浏览器不支持播放此音频！</audio>';
+                    } else {
+                        echo '<p class="card-text">' . Language["NotSupportWithoutUA"] . '</p>';
+                    }
                 }
                 echo '<hr />';
-                $DownloadLinkAvailableTime = (is_int(DownloadLinkAvailableTime)) ? DownloadLinkAvailableTime : 8;
+                $DownloadLinkAvailableTime = (is_int(DownloadLinkAvailableTime)) ? DownloadLinkAvailableTime : -1;
                 $Language_DownloadLink = Language["DownloadLink"];
                 if (strstr('https://' . $realLink, "//qdall")) echo '<h5 class="text-danger">当前SVIP账号已被限速，请联系站长更换账号。</h5>';
                 echo "<p class=\"card-text\"><a id=\"http\" href=\"http://$realLink\" style=\"display: none;\">下载链接</a>"
