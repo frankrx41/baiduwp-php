@@ -11,13 +11,12 @@
  *
  */
 require("./common/invalidCheck.php");
-echo '<script>setTimeout(() => Swal.fire("' . Language["TipTitle"] . '","' . Language["TimeoutTip"] . '","info"), 300000);</script>';
 CheckPassword();
 // $surl = $_POST["surl"]; // 含有1
-$pwd = (!empty($_POST["pwd"])) ? sanitizeContent($_POST["pwd"]) : "";
+$pwd = isset($_GET['pwd']) ? $_GET['pwd'] : ((!empty($_POST["pwd"])) ? sanitizeContent($_POST["pwd"]) : "");
 $dir = (!empty($_POST["dir"])) ? sanitizeContent($_POST["dir"]) : "";
 $IsRoot = ($dir == "") ? true : false;
-$surl = (!empty($dir)) ? "1" . sanitizeContent($_POST["surl"]) : sanitizeContent($_POST["surl"]); // 含有1
+$surl = isset($_GET['surl']) ? $_GET['surl'] : ((!empty($dir)) ? "1" . sanitizeContent($_POST["surl"]) : sanitizeContent($_POST["surl"])); // 含有1
 $surl_1 = substr($surl, 1); //不含1
 
 if (WECHAT_MOD) {

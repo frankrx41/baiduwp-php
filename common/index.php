@@ -23,8 +23,8 @@ require("./common/invalidCheck.php");
 		</div>
 		<div class="card-body">
 			<form name="form1" method="post" onsubmit="return validateForm()">
-				<div class="form-group my-2"><input type="text" class="form-control" name="surl" placeholder="<?php echo Language["ShareLink"]; ?>" oninput="Getpw()"></div>
-				<div class="form-group my-4"><input type="text" class="form-control" name="pwd" placeholder="<?php echo Language["SharePassword"]; ?>"></div>
+				<div class="form-group my-2"><input type="text" class="form-control" name="surl" placeholder="<?php echo Language["ShareLink"]; ?>" oninput="Getpw()" value="<?php echo isset($_GET['surl'])?$_GET['surl']:"" ?>"></div>
+				<div class="form-group my-4"><input type="text" class="form-control" name="pwd" placeholder="<?php echo Language["SharePassword"]; ?>" value="<?php echo isset($_GET['pwd'])?$_GET['pwd']:"" ?>"></div>
 				<?php
 				if (IsCheckPassword) {
 					$return = '<div class="form-group my-4"><input type="text" class="form-control" name="Password" placeholder="' . Language["PassWord"] . '"></div>';
